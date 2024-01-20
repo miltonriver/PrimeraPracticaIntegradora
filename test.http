@@ -1,0 +1,18 @@
+@miPuerto = http://localhost:8080
+
+{{miPuerto}}
+
+###
+GET {{miPuerto}}
+
+###
+POST {{miPuerto}}
+Content-Type: application/json
+
+{
+    "first_name": "Luis",
+    "last_name": "Garcia",
+    "email": "luis@g.mail",
+    "password": "123456",
+    "phone_number": 123456789
+}

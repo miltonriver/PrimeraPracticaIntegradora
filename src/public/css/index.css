@@ -1,0 +1,64 @@
+h1{
+    border: solid 3px green;
+    color: blue;
+    text-align: center;
+}
+
+#product_list{
+    display: flex;
+}
+
+#form_add{
+    display: flex;
+    flex-direction: column;
+    color: red;
+}
+
+#form_delete{
+    display: flex;
+    flex-direction: column;
+    color: blueviolet;
+}
+
+li{
+    padding: 5px;
+    margin: 3px;
+}
+
+.delete_button{
+    border-radius: 5px;
+    border: red solid 2px;
+    background-color: orange;
+    color: blue;
+}
+
+.delete_button:hover{
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+#submit_button_list{
+    list-style: none;
+}
+
+#submit_button{
+    border-radius: 5px;
+    list-style: none;
+    background-color: orange;
+    font-weight: bolder;
+    color:blueviolet;
+}
+
+#submit_button:hover{
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+#add_product, #delete_product{
+    border-radius: 5px;
+    color: red;
+    padding: 3px;
+    font-weight: bold;
+    margin: 5px;
+    margin-top: 20px;
+}

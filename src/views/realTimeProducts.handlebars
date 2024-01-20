@@ -1,0 +1,60 @@
+<div id="productList">
+    <h1>Listado de Productos</h1>
+
+    {{#each productos}}
+    <div>
+        <li>
+            Nombre: <b>{{this.title}}</b>
+            <p>Precio: <b>$ {{this.price}}</b></p>
+            <p>Código: <b>{{this.code}}</b></p>
+            <p>Id: <b>{{this.id}}</b></p>
+            <button type="button" class="delete_button" onclick='deleteProduct({{this.id}})'>Eliminar</button>
+        </li>
+    </div>
+    {{/each}}
+</div>
+
+<div>
+    <h2>Agregar un producto</h2>
+
+    <form action="/realTimeProducts" method="post" id="form_add" onsubmit="addProduct(); return false;">
+        <li>
+            <label for="title">Nombre del Producto:</label>
+            <input type="text" id="title" name="product_title" />
+        </li>
+        <li>
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" name="product_description" />
+        </li>
+        <li>
+            <label for="price">Precio:</label>
+            <input type="text" id="price" name="product_price" />
+        </li>
+        <li>
+            <label for="thumbnail">Imagen:</label>
+            <input type="text" id="thumbnail" name="product_thumbnail" />
+        </li>
+        <li>
+            <label for="code">Código:</label>
+            <input type="text" id="code" name="product_code" />
+        </li>
+        <li>
+            <label for="stock">Stock:</label>
+            <input type="text" id="stock" name="product_stock" />
+        </li>
+        <li>
+            <label for="status">Status:</label>
+            <input type="bool" id="status" name="product_status" />
+        </li>
+        <li>
+            <label for="category">Categoría:</label>
+            <input type="text" id="category" name="product_category" />
+        </li>
+        <li id="submit_button_list">
+            <input value="Agregar" type="submit" id="submit_button" onclick="addProduct()">
+        </li>
+    </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
