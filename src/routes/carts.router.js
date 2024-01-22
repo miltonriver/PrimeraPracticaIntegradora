@@ -51,13 +51,14 @@ cartsRouter.post('/', async (req, res) => {
 
 cartsRouter.post('/:cid/product/:pid', async (req, res) => {
     try {
-        const { cid, pid } = req.params
         const cart = await cartsModel.findById({ _id: cid })
-
-        if (!cart) {
+        const { cid, pid } = req.params
+        console.log("este es el contenido del carrito", cart)
+        
+        if (cart.products.length < 0) {
             return res.status(400).send({
                 status: 'error',
-                message: 'El carrito no existe',
+                message: 'El carrito está vacío',
             })
         }
 
@@ -78,8 +79,8 @@ cartsRouter.post('/:cid/product/:pid', async (req, res) => {
     } catch (error) {
         res.status(404).send({
             status: 'error',
-            mesagge: 'El carrito está vacio',
-            result: cart
+            mesagge: 'El carrito solicitado no existe',
+            result: error
         })
 
     }

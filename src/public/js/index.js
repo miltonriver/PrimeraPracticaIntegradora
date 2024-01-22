@@ -1,9 +1,7 @@
 const socket = io();//configuración para poder usar socket del lado del cliente
 console.log('Cliente conectado al servidor de socket')
 
-socket.emit('message', 'Me estoy comunicando desde un websocket!!')
-// socket.emit('message', 'Esta bueno, parece complicado al principio')
-// socket.emit('message', 'Pero se va haciendo adictivo')
+socket.emit('message1', 'Me estoy comunicando desde un websocket!!')
 
 function addProduct() {
 
@@ -22,10 +20,6 @@ function addProduct() {
 function deleteProduct(productId) {
     socket.emit("deleteProduct", { id: productId });
 }
-
-/* socket.on('productsListAdd', data => {
-    console.log('Recibido productList del servidor por el método addProduct: ', data)
-}) */
 
 socket.on('productsList', data => {
     // console.log('Recibido productList del servidor por el método deleteProduct: ', data)
@@ -58,20 +52,36 @@ socket.on('productsList', data => {
     }
 })
 
-// socket.on('otro-mensaje', data => {
-//     console.log(data)
-// })
-
-
-/* Swal.fire({
+//Modal para ingresar el mail 
+Swal.fire({
     title: "Autentificación requerida para poder ingresar",
-    input: "text",
-    text: "Ingresa tu nombre de usuario",
+    input: "email",
+    text: "Ingresa tu dirección de email",
     inputValidator: value => {
-        return !value && "Necesitas ingresar el nombre de usuario para continuar"
+        return !value && "Necesitas ingresar tu dirección de email para continuar"
     },
     allowOutsideClick: false
 }).then(result => {
     user = result.value
     console.log(user)
-}) */
+})
+
+//lógica del chat
+const chatbox = document.querySelector('#chatbox')
+chatbox.addEventListener('keyup', (evt) => {
+    if(evt.key === 'Enter'){
+        if(chatbox.value.trim().length > 0){
+            socket.emit('message', { user, message: chatbox.value })
+            chatbox.value = ''
+        }
+    }
+})
+
+socket.on('messageLogs', data => {
+    let messageLogs = document.querySelector('#messageLogs')
+    let mensajes = ''
+    data.forEach(mensaje => {
+        mensajes += `<li>${mensaje.user} dice: ${mensaje.message}</li>`
+    })
+    messageLogs.innerHTML = mensajes
+})
