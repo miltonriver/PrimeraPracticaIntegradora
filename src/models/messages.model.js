@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const messagesCollection = 'users'
+const messagesCollection = 'messages'
 
 const messageSchema = new Schema({
     user:{

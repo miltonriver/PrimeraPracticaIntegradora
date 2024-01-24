@@ -55,7 +55,7 @@ usersRouter.put('/:uid', async (req, res) => {
             const { uid } = req.params
             const userToUpdate = req.body
 
-            const result = await usersModel.findByIdAndUpdate({ _id: uid }, userToUpdate, {new: true})
+            const result = await usersModel.findByIdAndUpdate({ _id: uid }, userToUpdate, {new: true})//se usa para mostrar el usuario actualizado en tiempo real, dado que el sistema tenderá a mostrarnos el usuario actualizado pero sin actualizar
             res.status(200).send({
                 status: "success",
                 message: `El usuario ${result.first_name} ${result.last_name} con id "${uid}" ha sido actualizado`,

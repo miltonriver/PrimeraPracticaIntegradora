@@ -8,7 +8,7 @@
             <p>Precio: <b>$ {{this._doc.price}}</b></p>
             <p>Código: <b>{{this._doc.code}}</b></p>
             <p>Id: <b>{{this._doc._id}}</b></p>
-            <button type="button" class="delete_button" onclick='deleteProduct({{this._doc._id}})'>Eliminar</button>
+            <button type="button" class="delete_button" onclick='deleteProduct("{{this._doc._id}}")'>Eliminar</button>
         </li>
     </div>
     {{/each}}
@@ -51,7 +51,7 @@
             <input type="text" id="category" name="product_category" />
         </li>
         <li id="submit_button_list">
-            <input value="Agregar" type="submit" id="submit_button" onclick="addProduct()">
+            <input value="Agregar" type="submit" id="submit_button">
         </li>
     </form>
 </div>
