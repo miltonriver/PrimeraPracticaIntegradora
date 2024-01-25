@@ -4,11 +4,15 @@ import productsModel from "../models/products.model.js";
 const router = Router()
 
 router.get('/', (req, res) => {
-    res.render("index", {})
+    res.render("index", {
+        style: 'index.css'
+    })
 })
 
 router.get('/chatbox', (req, res) => {
-    res.render('chat', {})
+    res.render('chat', {
+        style: 'index.css'
+    })
 })
 
 router.get('/realtimeproducts', async (req, res) => {

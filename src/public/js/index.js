@@ -23,11 +23,11 @@ function addProduct() {
 
 function deleteProduct(productId) {
     socket.emit("deleteProduct", { _id: productId});
-    console.log("función deleteProduct emitida desde el servidor: ", productId)
+    // console.log("función deleteProduct emitida desde el servidor: ", productId)
 }
 
 socket.on('productsList', data => {
-    console.log('Recibido productList del servidor: ', data)
+    // console.log('Recibido productList del servidor: ', data)
 
     const productList = document.getElementById("productList");
     // console.log('Este es el contenido de la const: ', productList)
@@ -48,6 +48,7 @@ socket.on('productsList', data => {
             productContainer.innerHTML = `
             <li>      
             Nombre: <b>${product.title}</b>
+            <p>Descripción: <b>${product.description}</b></p>
             <p>Precio: <b>${product.price}</b></p>
             <p>Código: <b>${product.code}</b></p>
             <p>Id: <b>${product._id}</b></p>
@@ -93,4 +94,5 @@ socket.on('messageLogs', data => {
         mensajes += `<li>${mensaje.email} dice: ${mensaje.message}</li>`
     })
     messageLogs.innerHTML = mensajes
+    console.log(mensajes)
 })

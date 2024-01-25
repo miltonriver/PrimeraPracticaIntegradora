@@ -9,6 +9,7 @@ const messageSchema = new Schema({
         required: true
     },
     message: String
+    
 })
 
 export default model(messagesCollection, messageSchema);

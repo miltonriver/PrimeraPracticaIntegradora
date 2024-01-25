@@ -7,6 +7,7 @@ import __dirname, { uploader } from "./utils.js";
 import { Server } from "socket.io";
 import viewsRouter from "./routes/views.router.js"
 import productsModel from "./models/products.model.js";
+import messagesModel from "./models/messages.model.js";
 
 const app = express()
 const PORT = 8080
@@ -62,9 +63,32 @@ io.on('connection', socket => {
         console.log(data)
     })
 
-    socket.on('message', data => {
-        console.log(data)
+    socket.on('message', async (data) => {
+        // console.log("Esto contiene la data: ", data)
         mensajes.push(data)
         io.emit('messageLogs', mensajes)
+        // console.log("Este es el contenido del array mensajes: ", mensajes)
+        const { email, message } = await data
+
+        const updatedMessages = await messagesModel.findOne({user: email})
+        // console.log("Este es updatedMessages", updatedMessages)
+        if (!updatedMessages){
+            const newUserMessages = await messagesModel.create({user: email, message})
+            console.log("Nuevo usuario creado:", newUserMessages.user)
+            return
+        }
+        let newMessage;
+        try {
+            newMessage = JSON.parse(updatedMessages.message);
+        } catch (error) {
+            newMessage = updatedMessages.message;
+        }
+        // console.log("Contenido de newMessage: ", newMessage)
+
+        updatedMessages.message = message + "\n" + newMessage
+        console.log("Esto contiene updatedMessages: ", updatedMessages)
+
+        const result = await updatedMessages.save()
+
     })
 })
