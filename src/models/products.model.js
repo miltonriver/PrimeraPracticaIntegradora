@@ -6,7 +6,8 @@ const productSchema = new Schema({
     title:{
         type: String,
         unique: true,
-        required: true
+        required: true,
+        index: true
     },
     description: {
         type: String,
@@ -23,7 +24,8 @@ const productSchema = new Schema({
     code: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        index: true
     },
     stock: {
         type: Number,

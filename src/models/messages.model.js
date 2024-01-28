@@ -6,7 +6,8 @@ const messageSchema = new Schema({
     user:{
         type: String,
         unique: true,
-        required: true
+        required: true,
+        index: true
     },
     message: String
     
