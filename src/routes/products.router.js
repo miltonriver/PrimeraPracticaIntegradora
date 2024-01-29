@@ -5,7 +5,8 @@ const productsRouter = Router();
 
 productsRouter.get('/', async (req, res) => {
     try {
-        const products = await productsModel.find({})
+        // const products = await productsModel.find({})
+        const products = await productsModel.paginate({})
         res.status(200).send({
             status: 'succes',
             message: 'Colección de productos',

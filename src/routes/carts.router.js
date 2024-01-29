@@ -20,9 +20,7 @@ cartsRouter.get('/:cid', async (req, res) => {
             status: 'error',
             message: 'El carrito solicitado no existe o está vacío'
         })
-
     }
-
 })
 
 cartsRouter.post('/', async (req, res) => {
@@ -46,7 +44,6 @@ cartsRouter.post('/', async (req, res) => {
             error: error.message
         })
     }
-
 })
 
 cartsRouter.post('/:cid/product/:pid', async (req, res) => {
@@ -82,9 +79,62 @@ cartsRouter.post('/:cid/product/:pid', async (req, res) => {
             mesagge: 'El carrito solicitado no existe',
             result: error
         })
-
     }
+})
 
+cartsRouter.put('/:cid', async (req, res) => {
+    try {
+        const { cid } = req.params
+        const productToAddToCart = req.body
+        console.log("contenido que quiero actualizar:", productToAddToCart)
+    
+        const cartToUpdate = await cartsModel.findById({ _id: cid })
+        console.log("contenido del carrito encontrado: ", cartToUpdate)
+        cartToUpdate.products.push(productToAddToCart)
+        console.log("contenido del array:", cartToUpdate.products)
+        console.log("contenido actualizado del carrito: ", cartToUpdate)
+        await cartToUpdate.save()
+    
+        res.status(200).send({
+            status: 'succes',
+            message: `El carrito de ID ${cartToUpdate._id} ha sido actualizado`,
+            result: cartToUpdate
+        })
+        
+    } catch (error) {
+        console.error('Error al intentar actualizar el carrito:', error);
+        res.status(400).send({
+            status: 'error',
+            message: 'Error interno al intentar actualizar el carrito'
+        })
+    }
+})
+
+cartsRouter.delete('/:cid', async (req, res) => {
+    try {
+        const { cid } = req.params
+        const deleteCart = await cartsModel.findByIdAndDelete({_id: cid})
+        console.log(deleteCart)
+    
+        if (!deleteCart) {
+            return res.status(400).send({
+                status: 'Error',
+                message: `El carrito cuyo ID es "${cid}" no existe`,
+                deleteProduct
+            })
+        }
+    
+        res.status(200).send({
+            status: 'success',
+            message: `El carrito de ID "${cid}" ha sido eliminado`
+        })        
+    } catch (error) {
+        console.error('Error al intentar eliminar el carrito:', error);
+        res.status(500).send({
+            status: error,
+            message: 'Error interno al intentar eliminar el carrito'
+        });
+    }
 })
 
 export default cartsRouter

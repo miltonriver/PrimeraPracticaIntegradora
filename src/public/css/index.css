@@ -2,6 +2,8 @@ h1{
     border: solid 3px green;
     color: blue;
     text-align: center;
+    background-color: azure;
+    margin-bottom: 0;
 }
 
 #product_list{
@@ -67,4 +69,32 @@ li{
     border: solid blue 3px;
     width: 200px;
     height: 20px;
+}
+
+.listCollection{
+    background-color: aliceblue;
+    padding: 10px;
+}
+
+.pageFooter{
+    display: flex;
+    align-items: self-end;
+    justify-content: center;
+    background-color: azure;
+}
+
+.pageBreak{
+    font-size: medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: blue;
+    font-weight: bolder;
+}
+
+.pageFoot{
+    color: red;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:large;
+    padding: 5px 20px 0px 20px;
+    margin: 10px;
+    font-weight:500;
 }

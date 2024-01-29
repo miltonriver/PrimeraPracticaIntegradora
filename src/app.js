@@ -12,13 +12,21 @@ import messagesModel from "./models/messages.model.js";
 const app = express()
 const PORT = 8080
 
+const hbs = handlebars.create({
+    helpers: {
+        increment:function (value) {
+            return value + 1;
+        }
+    }
+})
+
 connectDB()
 app.use(express.static(__dirname+'/public'));
 app.use(express.json());
-app.use/express.urlencoded({ extends: true});
+app.use(express.urlencoded({ extends: true}));
 app.use(logger('dev'));
 
-app.engine('handlebars', handlebars.engine())
+app.engine('handlebars', hbs.engine)
 app.set("views", __dirname+ "/views")
 app.set("view engine", "handlebars")
 app.use('/', viewsRouter)
