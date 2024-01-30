@@ -26,6 +26,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extends: true}));
 app.use(logger('dev'));
 
+app.use((req, res, next) => {
+    console.log("Datos del cuerpo:", req.body);
+    next();
+});
+
 app.engine('handlebars', hbs.engine)
 app.set("views", __dirname+ "/views")
 app.set("view engine", "handlebars")
