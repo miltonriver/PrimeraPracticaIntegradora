@@ -6,6 +6,14 @@ h1{
     margin-bottom: 0;
 }
 
+.carrito_de_compras{
+    text-align: right;
+    background-color: azure;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 10px;
+}
+
 #product_list{
     display: flex;
 }
@@ -43,7 +51,7 @@ li{
     list-style: none;
 }
 
-#submit_button{
+#submit_button, #add_button_to_cart{
     border-radius: 5px;
     list-style: none;
     background-color: orange;
@@ -51,7 +59,7 @@ li{
     color:blueviolet;
 }
 
-#submit_button:hover{
+#submit_button:hover, #add_button_to_cart:hover{
     font-size: 16px;
     font-weight: bolder;
 }

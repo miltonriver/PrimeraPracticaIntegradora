@@ -1,5 +1,11 @@
 <div>
-    <h1>Productos</h1>
+    <header>
+        <h1>Productos</h1>
+        <a href="">
+            <h2 class="carrito_de_compras">Carrito</h2>
+        </a>
+    </header>
+    
     <section class="listCollection">
         {{#each products}}
         <ul>
@@ -11,6 +17,7 @@
             <li><b>Stock: </b> {{this.stock}}</li>
             <li><b>Categoría: </b> {{this.category}}</li>
         </ul>
+        <button id="add_button_to_cart" type="button" onclick="AddProductToCart({{this._id}})">Agregar al carrito</button>
         {{/each}}
     </section>
     <footer class="pageFooter">
@@ -22,5 +29,7 @@
         <a href="/products?pageQuery={{nextPage}}" class="pageBreak">Siguiente</a>
         {{/if}}
     </footer>
-
 </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

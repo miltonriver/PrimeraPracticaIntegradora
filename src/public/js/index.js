@@ -17,20 +17,20 @@ function addProduct() {
     const product = { title, description, price, thumbnail, code, stock, status, category }
 
     socket.emit("addProduct", product);
-    // console.log("Evento addProduct emitido desde el cliente (formulario)", product )
     document.getElementById("form_add").reset();
 }
 
 function deleteProduct(productId) {
     socket.emit("deleteProduct", { _id: productId});
-    // console.log("función deleteProduct emitida desde el servidor: ", productId)
+}
+
+function addProductToCart(pid) {
+    socket.emit("addProductToCart", { _id: pid })
+    console.log(`Producto ${productId} agregado al carrito.`)
 }
 
 socket.on('productsList', data => {
-    // console.log('Recibido productList del servidor: ', data)
-
     const productList = document.getElementById("productList");
-    // console.log('Este es el contenido de la const: ', productList)
 
     if (productList && Array.isArray(data)) {
         productList.innerHTML = '';

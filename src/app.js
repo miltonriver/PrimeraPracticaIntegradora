@@ -26,10 +26,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extends: true}));
 app.use(logger('dev'));
 
-app.use((req, res, next) => {
-    console.log("Datos del cuerpo:", req.body);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log("Datos del cuerpo:", req.body);
+//     next();
+// });
 
 app.engine('handlebars', hbs.engine)
 app.set("views", __dirname+ "/views")
@@ -70,6 +70,10 @@ io.on('connection', socket => {
         // console.log("este es el producto a borrar: ", productDeleted)
         const productList = await productsModel.find()
         io.emit('productsList', productList)
+    })
+
+    socket.on("addProductToCart", async (product) => {
+        io.emit("updatedCart", product)
     })
 
     socket.on("message1", (data) => {

@@ -6,3 +6,5 @@
 db.collection.find() sql - relacional excel
 
 - integrarlo a nuestra app
+-Para usar el debug depurador iniciar node con el siguiente comando: 
+--> DEBUG=myapp:carts npm run start:dev
