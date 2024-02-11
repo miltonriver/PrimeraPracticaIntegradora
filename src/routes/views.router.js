@@ -10,6 +10,18 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/register', (req, res) => {
+    res.render('register', {
+        style: 'index.css'
+    })
+})
+
+router.get('/login', (req, res) => {
+    res.render('login', {
+        style: 'index.css'
+    })
+})
+
 router.get('/chatbox', (req, res) => {
     res.render('chat', {
         style: 'index.css'

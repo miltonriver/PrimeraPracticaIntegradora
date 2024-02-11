@@ -106,3 +106,17 @@ li{
     margin: 10px;
     font-weight:500;
 }
+
+.field_register_form{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 2px 5px;
+    padding: 3px;
+}
+
+.input_register_form{
+    padding: 5px;
+    width: 30%;
+}

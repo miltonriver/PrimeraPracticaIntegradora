@@ -1,4 +1,4 @@
-import userModel from "../../models/user.model.js"
+import userModel from "../../models/users.model.js"
 
 class UserManagerMongo {
     async getUsers(){
@@ -9,7 +9,7 @@ class UserManagerMongo {
         return await userModel.findOne({_id: uid})
     }
 
-    async createUsers(newUser){
+    async createUser(newUser){
         return await userModel.create(newUser)
     }
 
@@ -21,3 +21,5 @@ class UserManagerMongo {
         return await userModel.deleteOne({_id: uid})
     }
 }
+
+export default UserManagerMongo
