@@ -1,6 +1,7 @@
 import { Router } from "express";
 import auth from "../middleware/authentication.middleware.js";
 import UserManagerMongo from "../manager/Mongo/userManagerMongo.js";
+import productsModel from "../models/products.model.js";
 
 const sessionsRouter = Router()
 const sessionService = new UserManagerMongo()
@@ -26,10 +27,9 @@ sessionsRouter.post('/register', async (req, res) => {
             phone_number
         }
         const result = await sessionService.createUser(newUser)
-        res.send({
-            status: "success",
-            message: 'registro exitoso',
-            payload: newUser
+        res.render('registerSuccess', {
+            username: username,
+            style: "index.css"
         })
         
     } catch (error) {
@@ -44,11 +44,8 @@ sessionsRouter.post('/login', async (req, res) =>  {
     try {
         const { username, password } = req.body
     
-        // if(username !== 'milton' || password !== '12345'){
-        //     return res.send('login failed')
-        // }
-    
-        const user = await sessionService.getUser({username})
+        
+        const user = await sessionService.getUser(username)
         console.log("mostrar el contenido de user", user)
         if(!user) {
             return res.send({
@@ -56,10 +53,20 @@ sessionsRouter.post('/login', async (req, res) =>  {
                 error: "El usuario no existe o no está registrado"
             })
         }
+        
+        if(user.password !== password){
+            return res.send('Login failed: Contraseña incorrecta')
+        }
+
+        req.session.user = {id: user.id, username: user.username, admin: true}
     
-        req.session.user = {id: user.id, username: user.username, admin: false}
-    
-        res.send('login success')
+        // res.send('login success')
+        const products = await productsModel.find({})
+        res.render('productosActualizados', {
+            username: username,
+            productos: products,
+            style: 'index.css'
+        })
         
     } catch (error) {
         res.send({

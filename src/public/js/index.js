@@ -21,7 +21,7 @@ function addProduct() {
 }
 
 function deleteProduct(productId) {
-    socket.emit("deleteProduct", { _id: productId});
+    socket.emit("deleteProduct", { _id: productId });
 }
 
 function addProductToCart(pid) {
@@ -62,6 +62,23 @@ socket.on('productsList', data => {
     }
 })
 
+//botón para ocultar/mostrar contraseña en el login
+const pass = document.getElementById("pass")
+console.log("mostrar el contenido de:", pass)
+const icon = document.querySelector(".bx")
+
+icon.addEventListener("click", e => {
+    if (pass.type === "password") {
+        pass.type = "text";
+        icon.classList.remove('bx-show');
+        icon.classList.add('bxs-hide')
+    } else {
+        pass.type = "password"
+        icon.classList.add('bx-show');
+        icon.classList.remove('bxs-hide')
+    }
+})
+
 //Modal para ingresar el mail 
 Swal.fire({
     title: "Autentificación requerida para poder ingresar",
@@ -79,8 +96,8 @@ Swal.fire({
 //lógica del chat
 const chatbox = document.querySelector('#chatbox')
 chatbox.addEventListener('keyup', (evt) => {
-    if(evt.key === 'Enter'){
-        if(chatbox.value.trim().length > 0){
+    if (evt.key === 'Enter') {
+        if (chatbox.value.trim().length > 0) {
             socket.emit('message', { email, message: chatbox.value })
             chatbox.value = ''
         }

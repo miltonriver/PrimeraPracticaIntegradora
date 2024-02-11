@@ -1,9 +1,17 @@
-h1{
+h1, .h2_title{
     border: solid 3px green;
     color: blue;
     text-align: center;
     background-color: azure;
     margin-bottom: 0;
+    margin-top: 0;
+}
+
+.identification_tittle{
+    background-color: #dfebef;
+    margin: 0;
+    padding: 10px 5px;
+    color: rgb(39 16 223);
 }
 
 .carrito_de_compras{
@@ -119,4 +127,43 @@ li{
 .input_register_form{
     padding: 5px;
     width: 30%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.bx{
+    font-size: 20px;
+    transform: translateX(-30px);
+    cursor: pointer;
+}
+
+.bx:hover{
+    font-size: 25px;
+}
+
+.register_success_container{
+    display: flex;
+    justify-content: center;
+}
+
+.register_success-body{
+    height: 500px;
+    width: 95%;
+    background-color: #cfe7e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 100px;
+    font-weight: 800;
+}
+
+.register_success_footer{
+    display: flex;
+    justify-content: right;
+    margin: 10px;
+    padding: 25px;
 }

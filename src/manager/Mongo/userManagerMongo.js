@@ -5,8 +5,8 @@ class UserManagerMongo {
         return await userModel.find({})
     }
 
-    async getUser(uid){
-        return await userModel.findOne({_id: uid})
+    async getUser(username){
+        return await userModel.findOne({username})
     }
 
     async createUser(newUser){
