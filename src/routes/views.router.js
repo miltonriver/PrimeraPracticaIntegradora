@@ -44,6 +44,23 @@ router.get('/realtimeproducts', async (req, res) => {
     }
 })
 
+router.get('/productosactualizados', async (req, res) => {
+
+    try {
+        const products = await productsModel.find({})
+        // console.log(products)
+        res.render('productosActualizados', {
+            username: req.session.username,
+            productos: products,
+            style: 'index.css'
+        })
+    } catch (error) {
+        console.log(error);
+        res.render("Error al intentar obtener la lista de productos!");
+        return;
+    }
+})
+
 router.get('/users', async (req, res) => {
     try {
         const { limit = 10, pageQuery= 1, sort } = req.query

@@ -134,14 +134,29 @@ li{
     align-items: center;
 }
 
-.bx{
+.icon_show{
     font-size: 20px;
     transform: translateX(-30px);
     cursor: pointer;
 }
 
-.bx:hover{
+.icon_show:hover{
     font-size: 25px;
+}
+
+.icon_cart_container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 5px 0;
+}
+
+.icon_cart{
+    font-size: 25px;
+    cursor: pointer;
+    color: blueviolet;
+    padding: 5px;
+    margin: 0 10px;
 }
 
 .register_success_container{
@@ -163,7 +178,12 @@ li{
 
 .register_success_footer{
     display: flex;
-    justify-content: right;
+    justify-content: space-evenly;
     margin: 10px;
     padding: 25px;
+    font-size: 20px;
+}
+
+.login_link_footer:hover, .products_link_footer:hover{
+    font-size: 26px;
 }

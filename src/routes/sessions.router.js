@@ -43,10 +43,17 @@ sessionsRouter.post('/register', async (req, res) => {
 sessionsRouter.post('/login', async (req, res) =>  {
     try {
         const { username, password } = req.body
-    
-        
         const user = await sessionService.getUser(username)
         console.log("mostrar el contenido de user", user)
+
+        if(user.email === "adminCoder@coder.com" ){
+            user.role = "admin",
+            res.render('adminPage', {
+                username: username,
+                style: 'index.css'
+            })
+        }
+        
         if(!user) {
             return res.send({
                 status: "error",
@@ -86,8 +93,15 @@ sessionsRouter.get('/logout', (req, res) => {
     })
 })
 
-sessionsRouter.get('/current', auth, (req, res) => {
-    res.send('<h1>Datos sensibles</h1>')
+sessionsRouter.get('/current', auth, async (req, res) => {
+    try {
+        res.send('<h1>Datos sensibles</h1>')        
+    } catch (error) {
+        res.send({
+            status: "error",
+            error: error.message
+        })
+    }
 })
 
 
