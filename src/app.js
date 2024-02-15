@@ -11,6 +11,8 @@ import messagesModel from "./models/messages.model.js";
 import session from "express-session";
 // import FileStore  from "session-file-store";
 import MongoStore from "connect-mongo";
+import passport from "passport";
+import initializePassport from "./config/passport.config.js";
 
 const app = express()
 const PORT = 8080
@@ -42,12 +44,16 @@ app.use(session({
             useNewUrlParser: true,
             useUnifiedTopology: true
         },
-        ttl: 15
+        ttl: 30
     }),
-    secret: "secretCoder",
+    secret: "secretMilton",
     resave: true,
     saveUninitialized: true
 }))
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 // app.use((req, res, next) => {
 //     console.log("Datos del cuerpo:", req.body);

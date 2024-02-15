@@ -2,6 +2,7 @@ import { Router } from "express";
 import auth from "../middleware/authentication.middleware.js";
 import UserManagerMongo from "../manager/Mongo/userManagerMongo.js";
 import productsModel from "../models/products.model.js";
+import { createHash, isValidPassword } from "../utils/hashBcrypt.js";
 
 const sessionsRouter = Router()
 const sessionService = new UserManagerMongo()
@@ -23,7 +24,7 @@ sessionsRouter.post('/register', async (req, res) => {
             last_name,
             username,
             email,
-            password,
+            password: createHash(password),
             phone_number
         }
         const result = await sessionService.createUser(newUser)
@@ -61,9 +62,7 @@ sessionsRouter.post('/login', async (req, res) =>  {
             })
         }
         
-        if(user.password !== password){
-            return res.send('Login failed: Contraseña incorrecta')
-        }
+        if (!isValidPassword(password, user.password)) return res.status(401).send('no coinciden las credenciales')
 
         req.session.user = {id: user.id, username: user.username, admin: true}
     
