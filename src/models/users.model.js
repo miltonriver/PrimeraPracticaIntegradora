@@ -28,7 +28,7 @@ const userSchema = new Schema({
     },
     phone_number: {
         type: Number,
-        default: "sin datos"
+        default: 111111111
     },
     role: {
         type: String,

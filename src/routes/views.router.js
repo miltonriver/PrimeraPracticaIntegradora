@@ -15,9 +15,19 @@ router.get('/register', (req, res) => {
         style: 'index.css'
     })
 })
+router.get('/registerpassport', (req, res) => {
+    res.render('registerpassport', {
+        style: 'index.css'
+    })
+})
 
 router.get('/login', (req, res) => {
     res.render('login', {
+        style: 'index.css'
+    })
+})
+router.get('/loginpassport', (req, res) => {
+    res.render('loginpassport', {
         style: 'index.css'
     })
 })

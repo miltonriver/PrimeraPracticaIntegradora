@@ -47,8 +47,8 @@ app.use(session({
         ttl: 30
     }),
     secret: "secretMilton",
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
 }))
 
 initializePassport();
