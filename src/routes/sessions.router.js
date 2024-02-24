@@ -4,6 +4,8 @@ import UserManagerMongo from "../manager/Mongo/userManagerMongo.js";
 import productsModel from "../models/products.model.js";
 import { createHash, isValidPassword } from "../utils/hashBcrypt.js";
 import passport from "passport";
+import generateToken from "../utils/jsonwebtoken.js";
+import { authTokenMiddleware } from "../utils/jsonwebtoken.js";
 
 const sessionsRouter = Router()
 const sessionService = new UserManagerMongo()
@@ -29,8 +31,25 @@ sessionsRouter.post('/register', async (req, res) => {
             phone_number
         }
         const result = await sessionService.createUser(newUser)
+        
+        const token = generateToken({
+            fullname: `${first_name} ${last_name}`,
+            username: username,
+            // id: result._id
+        })
+
+        console.log('token: ', token)
+        
+        /* res.status(200).send({
+            username: username,
+            status: "success",
+            usersCreate: result,
+            token
+        }) */
+
         res.render('registerSuccess', {
             username: username,
+            usersCreate: result,
             style: "index.css"
         })
 
@@ -78,7 +97,20 @@ sessionsRouter.post('/login', async (req, res) => {
 
         if (!isValidPassword(password, user.password)) return res.status(401).send('no coinciden las credenciales')
 
-        req.session.user = { id: user.id, username: user.username, admin: true }
+        const token = generateToken({
+            fullname: `${user.first_name} ${user.last_name}`,
+            username: username,
+            id: user._id
+        })
+        console.log("token: ", token)
+
+        // req.session.user = { id: user.id, username: user.username, admin: true }
+
+        /* res.status(200).send({
+            status: "success",
+            usersCreate: user,
+            token
+        }) */
 
         // res.send('login success')
         const products = await productsModel.find({})
@@ -89,9 +121,10 @@ sessionsRouter.post('/login', async (req, res) => {
         })
 
     } catch (error) {
+        console.log(error)
         res.send({
             status: "error",
-            error: error.message
+            error: error.message,
         })
     }
 })
@@ -137,7 +170,7 @@ sessionsRouter.get('/githubcallback', passport.authenticate('github', {failureRe
     res.redirect('/realtimeproducts')
 })
 
-sessionsRouter.get('/current', auth, async (req, res) => {
+sessionsRouter.get('/current', authTokenMiddleware, async (req, res) => {
     try {
         res.send('<h1>Datos sensibles</h1>')
     } catch (error) {

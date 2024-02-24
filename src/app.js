@@ -32,7 +32,7 @@ app.use(express.static(__dirname+'/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extends: true}));
 app.use(logger('dev'));
-app.use(session({
+/* app.use(session({
     // store: new fileStore({
     //     path: './sessions',
     //     ttl: 100,
@@ -53,7 +53,7 @@ app.use(session({
 
 initializePassport();
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); */
 
 // app.use((req, res, next) => {
 //     console.log("Datos del cuerpo:", req.body);

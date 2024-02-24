@@ -113,3 +113,12 @@ socket.on('messageLogs', data => {
     messageLogs.innerHTML = mensajes
     console.log(mensajes)
 })
+
+/* fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer dsadiuhvsdfhsod/dsajoiivndsfi"
+    },
+    body: JSON.stringify({user: user})
+}) */
