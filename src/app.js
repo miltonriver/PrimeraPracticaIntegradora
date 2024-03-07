@@ -37,7 +37,7 @@ app.use(logger('dev'));
     //     path: './sessions',
     //     ttl: 100,
     //     retries: 0
-    // }),
+    // }), --> Para configurar la estrategia aplicando fileStore
     store: MongoStore.create({
         mongoUrl: "mongodb+srv://miltonriver66:ysNah4318GtwLf68@cluster0.ses5lly.mongodb.net/ecommerce?retryWrites=true&w=majority",
         mongoOptions: {

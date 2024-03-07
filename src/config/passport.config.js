@@ -1,6 +1,5 @@
 import passport from "passport";
 import local from "passport-local";
-// import usersModel from "../models/users.model.js"; //se hace a través del manager
 import UserManagerMongo from "../manager/Mongo/userManagerMongo.js";
 import { createHash, isValidPassword } from "../utils/hashBcrypt.js";
 import GithubStrategy from "passport-github2";
@@ -75,6 +74,7 @@ const initializePassport = () => {
         callbackURL: "http://localhost:8080/api/sessions/githubcallback"
     }, async (accessToken, refreshToken, profile, done) => {
         console.log("profile: ", profile)
+        console.log("Estrategia Github configurada correctamente")
         try {
             let user = await userModel.getUser(profile._json.login)
             // console.log("Profile username github: ", profile.username)

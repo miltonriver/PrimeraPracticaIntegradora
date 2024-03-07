@@ -9,15 +9,17 @@ class CartManagerMongo {
         return await cartModel.findOne({_id: cid})
     }
 
-    async createCarts(newCart){
+    async createCart(newCart){
         return await cartModel.create(newCart)
     }
     
     async updateCart(cid){
-        return await cartModel.updateOne({_id: cid})
+        return await cartModel.findOneAndUpdate({_id: cid},  {new: true})
     }
 
     async deleteCart(cid){
         return await cartModel.deleteOne({_id: cid})
     }
 }
+
+export default CartManagerMongo

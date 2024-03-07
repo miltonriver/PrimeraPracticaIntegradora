@@ -13,8 +13,8 @@ class UserManagerMongo {
         return await userModel.create(newUser)
     }
 
-    async updateUser(uid){
-        return await userModel.updateOne({_id: uid})
+    async updateUser(uid, userToUpdate){
+        return await userModel.findByIdAndUpdate({_id: uid}, userToUpdate, {new: true})
     }
     
     async deleteUser(uid){
