@@ -5,6 +5,14 @@ class UserManagerMongo {
         return await userModel.find({})
     }
 
+    async getUsersPaginate(page = 1, limit = 5){
+        const options = {
+            page: page,
+            limit: limit
+        };
+        return await userModel.paginate({}, options)
+    }
+
     async getUser(username){
         return await userModel.findOne({username})
     }

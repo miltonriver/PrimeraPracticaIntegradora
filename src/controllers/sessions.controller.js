@@ -116,6 +116,7 @@ class SessionController {
     }
 
     logoutUser = (req, res) => {
+        
         try {
             req.session.destroy(error => {
                 if (error) return res.send('Logout error')
