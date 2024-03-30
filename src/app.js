@@ -13,6 +13,11 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
 import initializePassport from "./config/passport.config.js";
+import dotenv from "dotenv";
+
+dotenv.config()
+console.log(process.env.GMAIL_USER_APP);
+console.log(process.env.GMAIL_PASS_APP);
 
 const app = express()
 const PORT = 8080
