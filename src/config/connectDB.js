@@ -14,12 +14,12 @@ export const configObject = {
     persistence:     process.env.PERSISTENCE,
     gmail_user:      process.env.GMAIL_USER_APP,
     gmail_password:  process.env.GMAIL_PASS_APP,
-    twilio_sid:      process.env.TWILIO_ACCOUNT_SID,
+    /* twilio_sid:      process.env.TWILIO_ACCOUNT_SID,
     twilio_token:    process.env.TWILIO_AUTH_TOKEN,
-    twilio_phone:    process.env.TWILIO_PHONE_NUMBER
+    twilio_phone:    process.env.TWILIO_PHONE_NUMBER */
 }
-console.log("Contenido de configObject: ", configObject.gmail_password)
-console.log("Contenido de configObject: ", configObject.gmail_user)
+/* console.log("Contenido de configObject: ", configObject.gmail_password)
+console.log("Contenido de configObject: ", configObject.gmail_user) */
 
 const connectDB = async () => {
     try {
