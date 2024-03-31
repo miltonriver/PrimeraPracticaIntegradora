@@ -19,7 +19,10 @@ export const configObject = {
     twilio_phone:    process.env.TWILIO_PHONE_NUMBER
 }
 /* console.log("Contenido de configObject: ", configObject.gmail_password)
-console.log("Contenido de configObject: ", configObject.gmail_user) */
+console.log("Contenido de configObject: ", configObject.gmail_user)
+console.log("Contenido de configObject: ", configObject.twilio_sid)
+console.log("Contenido de configObject: ", configObject.twilio_token)
+console.log("Contenido de configObject: ", configObject.twilio_phone) */
 
 const connectDB = async () => {
     try {
